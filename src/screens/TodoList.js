@@ -7,29 +7,24 @@ export const TodoList = () => {
 
   const array = todos; //空の配列
 
-  console.log("一回目のレンダリングtodos:", todos);
-  console.log("一回目のレンダリングarray:", array);
-
-  // const tekito = () => {
-  //   setTodos(array);
-  //   setTodos(...todos, array);
-  // };
-
   const handleForm = (event) => {
     setInput(event.target.value);
   };
-  // console.log(input);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // array.push("洗い物をする"); //[せんんたくものをする],[あたらしいタスク]
     // setTodos(array);
-    // setInput("");
-    const newTodo = "ネイルする";
+    let newTodo = input;
     todos.push(newTodo);
     console.log("handleSubmit後に再レンダリングtodos:", todos);
+    setInput("");
   };
 
+  const handleRemoveTodo = (index) => {
+    // todoのインデックスを指定して削除する
+    const todolist = todos.concat;
+  };
   return (
     <div>
       <h1>ToDoList</h1>
@@ -45,10 +40,15 @@ export const TodoList = () => {
           <button onClick={(event) => handleSubmit(event)}>クリック</button>
         </form>
       </div>
-      {/* {todos.map((todo) => {
+      {todos.map((todo, index) => {
         console.log(todo);
-        return <p>{todo}</p>;
-      })} */}
+        return (
+          <p index={index}>
+            {todo}
+            <button onClick={handleRemoveTodo(index)}>削除</button>
+          </p>
+        );
+      })}
     </div>
   );
 };
