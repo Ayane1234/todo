@@ -25,8 +25,9 @@ export const TodoList = () => {
 
   const handleRemoveTodo = (index) => {
     const todolist = todos;
+    console.log("todolist:", todolist);
     // todoのインデックスを指定して削除する
-    todolist.splice(index, 1);
+    // todolist.splice(index, 1);
   };
   return (
     <div>
