@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { TodoForm } from "../components/TodoForm";
 
 export const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
 
-  const array = todos; //空の配列
+  const array = todos; //空の配列を用意する、基本ここにTodoを入れる
 
   const handleForm = (event) => {
     setInput(event.target.value);
@@ -13,22 +12,25 @@ export const TodoList = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // array.push("洗い物をする"); //[せんんたくものをする],[あたらしいタスク]
-    // setTodos(array);
-    let newTodo = input;
-    todos.push(newTodo);
-    console.log("handleSubmit後に再レンダリングtodos:", todos);
+
+    let newTodo = input; //inputの内容を変数に入れる
+
+    // setStateで.pushする
+    setTodos(todos.push(newTodo)); //ここでは、[newTodo,次のnewTodo]と続くようにしたい
+    console.log("handleSubmit後のtodos:", todos);
     setInput("");
   };
 
+  // const todolist = todos;
+
   const handleRemoveTodo = (index) => {
+    const todolist = todos;
     // todoのインデックスを指定して削除する
-    const todolist = todos.concat;
+    todolist.splice(index, 1);
   };
   return (
     <div>
       <h1>ToDoList</h1>
-      {/* <button onClick={() => tekito()}>適当</button> */}
       <div>
         <form>
           <input
