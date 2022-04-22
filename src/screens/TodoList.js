@@ -14,9 +14,9 @@ export const TodoList = () => {
     event.preventDefault();
 
     let newTodo = input; //inputの内容を変数に入れる
-
+    array.push(newTodo);
     // setStateで.pushする
-    setTodos(todos.push(newTodo)); //ここでは、[newTodo,次のnewTodo]と続くようにしたい
+    setTodos(array); //ここでは、[newTodo,次のnewTodo]と続くようにしたい
     console.log("handleSubmit後のtodos:", todos);
     setInput("");
   };
