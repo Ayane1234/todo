@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
-import { TextField } from "@mui/material";
-import { Stack } from "@mui/material";
-import { Paper } from "@mui/material";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
@@ -43,56 +38,77 @@ export const TodoList = () => {
 
   return (
     <div>
-      <Stack container spacing={3} alignItems="center">
-        <Grid item>
-          <TextField
-            id="standard-basic"
-            label="input your todo"
-            variant="standard"
-            onChange={(event) => handleForm(event)}
-            value={input}
-            style={styles.TextField}
-          />
-          {/* <input
+      <div style={styles.inputContainer}>
+        <input
           onChange={(event) => handleForm(event)}
           type="text"
           value={input}
           placeholder="input your todo!"
-        ></input> */}
-          <AddCircleIcon onClick={() => handleSubmit()} />
-          {/* <button onClick={() => handleSubmit()}>クリック</button> */}
-        </Grid>
+          style={styles.inputText}
+        ></input>
 
-        <Grid item>
-          {todos.map((todo, index) => {
-            return (
-              <Paper
-                elevation={10}
-                variant="outlined"
-                style={styles.todo}
-                index={index}
-              >
+        <AddCircleIcon onClick={() => handleSubmit()} />
+        {/* <button onClick={() => handleSubmit()}>クリック</button> */}
+      </div>
+
+      <div>
+        {todos.map((todo, index) => {
+          return (
+            <div style={styles.todoContainer}>
+              <div index={index} style={styles.todo}>
                 {todo}
                 <DeleteIcon
                   onClick={() => handleRemoveTodo(index)}
-                  style={{ color: "gray" }}
+                  style={styles.deleteIcon}
                 />
-                {/* <button onClick={() => handleRemoveTodo(index)}>削除</button> */}
-              </Paper>
-            );
-          })}
-        </Grid>
-      </Stack>
+              </div>
+              {/* <button onClick={() => handleRemoveTodo(index)}>削除</button> */}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
 const styles = {
+  inputContainer: {
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: "20px",
+    marginTop: "40px",
+    borderBottom: "1px solid gray",
+  },
+  inputText: {
+    // backgroundColor: "pink",
+    width: "180px",
+    borderStyle: "none",
+    borderBottom: "1px solid gray",
+    marginRight: "20px",
+    marginBottom: "40px",
+  },
+
+  todoContainer: {
+    height: "100px",
+    // backgroundColor: "gray",
+    justifyContent: "center",
+    display: "flex",
+    // flexDirection: "row",
+    // alignItems: "center",
+  },
+
   todo: {
-    // border: "1px solid gray",
-    margin: "12px",
-    width: "300px",
-    backgroundColor: "#AEC4E5",
-    boxShadow: "4px 4px #4072B3",
-    padding: "4px 2px",
+    fontWeight: "600",
+    border: "1px solid gray",
+    backgroundColor: "white",
+    width: "200px",
+    padding: "20px 20px",
+    boxShadow: "2px 2px 5px rgba(0,0,0,.2)",
+    borderRadius: "15px",
+    height: "30px",
+  },
+
+  deleteIcon: {
+    // margin: "10px",
+    float: "right",
   },
 };
