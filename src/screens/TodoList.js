@@ -51,22 +51,20 @@ export const TodoList = () => {
         {/* <button onClick={() => handleSubmit()}>クリック</button> */}
       </div>
 
-      <div>
-        {todos.map((todo, index) => {
-          return (
-            <div style={styles.todoContainer}>
-              <div index={index} style={styles.todo}>
-                {todo}
-                <DeleteIcon
-                  onClick={() => handleRemoveTodo(index)}
-                  style={styles.deleteIcon}
-                />
-              </div>
-              {/* <button onClick={() => handleRemoveTodo(index)}>削除</button> */}
+      {todos.map((todo, index) => {
+        return (
+          <div style={styles.todoContainer}>
+            <div index={index} style={styles.todo}>
+              {todo}
+              <DeleteIcon
+                onClick={() => handleRemoveTodo(index)}
+                style={styles.deleteIcon}
+              />
             </div>
-          );
-        })}
-      </div>
+            {/* <button onClick={() => handleRemoveTodo(index)}>削除</button> */}
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -79,7 +77,6 @@ const styles = {
     borderBottom: "1px solid gray",
   },
   inputText: {
-    // backgroundColor: "pink",
     width: "180px",
     borderStyle: "none",
     borderBottom: "1px solid gray",
@@ -89,26 +86,23 @@ const styles = {
 
   todoContainer: {
     height: "100px",
-    // backgroundColor: "gray",
-    justifyContent: "center",
     display: "flex",
-    // flexDirection: "row",
-    // alignItems: "center",
+    justifyContent: "center",
   },
 
   todo: {
+    display: "flex", //flexを追加
     fontWeight: "600",
+    width: "200px",
+    height: "30px",
     border: "1px solid gray",
     backgroundColor: "white",
-    width: "200px",
     padding: "20px 20px",
     boxShadow: "2px 2px 5px rgba(0,0,0,.2)",
     borderRadius: "15px",
-    height: "30px",
   },
 
   deleteIcon: {
-    // margin: "10px",
-    float: "right",
+    marginLeft: "70px", //floatを削除
   },
 };
