@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { TodoListItem } from "../components/TodoListItem";
+import { Input } from "../components/Input";
 
 export const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -11,7 +11,6 @@ export const TodoList = () => {
   };
 
   const handleSubmit = () => {
-    // event.preventDefault();
     if (input === "") {
       return;
     }
@@ -22,8 +21,6 @@ export const TodoList = () => {
     console.log("handleSubmit後のtodos:", todos);
     setInput("");
   };
-
-  // const todolist = todos;
 
   const handleRemoveTodo = (index) => {
     let todolist = todos;
@@ -38,7 +35,7 @@ export const TodoList = () => {
 
   return (
     <div>
-      <div style={styles.inputContainer}>
+      {/* <div style={styles.inputContainer}>
         <input
           onChange={(event) => handleForm(event)}
           type="text"
@@ -48,21 +45,22 @@ export const TodoList = () => {
         ></input>
 
         <AddCircleIcon onClick={() => handleSubmit()} />
-        {/* <button onClick={() => handleSubmit()}>クリック</button> */}
-      </div>
+      </div> */}
+      <Input
+        handleForm={handleForm}
+        value={input}
+        handleSubmit={handleSubmit}
+      />
 
       {todos.map((todo, index) => {
         return (
-          <div style={styles.todoContainer}>
-            <div index={index} style={styles.todo}>
-              {todo}
-              <DeleteIcon
-                onClick={() => handleRemoveTodo(index)}
-                style={styles.deleteIcon}
-              />
-            </div>
-            {/* <button onClick={() => handleRemoveTodo(index)}>削除</button> */}
-          </div>
+          <>
+            <TodoListItem
+              index={index}
+              todo={todo}
+              handleRemoveTodo={handleRemoveTodo}
+            />
+          </>
         );
       })}
     </div>
@@ -85,24 +83,8 @@ const styles = {
   },
 
   todoContainer: {
-    height: "100px",
     display: "flex",
     justifyContent: "center",
-  },
-
-  todo: {
-    display: "flex", //flexを追加
-    fontWeight: "600",
-    width: "200px",
-    height: "30px",
-    border: "1px solid gray",
-    backgroundColor: "white",
-    padding: "20px 20px",
-    boxShadow: "2px 2px 5px rgba(0,0,0,.2)",
-    borderRadius: "15px",
-  },
-
-  deleteIcon: {
-    marginLeft: "70px", //floatを削除
+    marginBottom: "10px",
   },
 };
